@@ -8,7 +8,7 @@ This project has been developed using Python 3.11.4, FASTAPI, and Pip.
 
 Before you begin, make sure you have the following installed on your system:
 
-- Python 3.10
+- Python 3.11
 - Python's virtual environment (venv)
 - Chocolatey (for Windows) (Optional for use Make see the note below)
 
