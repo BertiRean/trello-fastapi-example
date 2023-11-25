@@ -157,3 +157,19 @@ def handle_task_trello(payload: TrelloTask = Body(...)):
             status_code=status.HTTP_404_NOT_FOUND,
             description=f"Task Type {payload.task_type} of TrelloTask not handled",
         )
+
+@app.get('/boards')
+def get_account_boards():
+    url = "https://api.trello.com/1/members/me/boards"
+    query = {
+        "key": TRELLO_API_KEY,
+        "token": TRELLO_TOKEN,
+    }
+    response = requests.get(url=url, params=query)
+    if response.status_code == status.HTTP_200_OK:
+        boards = {}
+        for item in response.json():
+          boards[item['name']] = item['id']
+        return boards
+    else:
+        raise HTTPException(status_code=response.status_code, detail=response.text)

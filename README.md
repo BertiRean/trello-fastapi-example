@@ -79,6 +79,14 @@ Now that you have set up the environment, you can start the project:
 
 1. Make sure your virtual environment is activated.
 
+2. Set  the Enviroment variables from .env_local file based in your Trello config and rename the file to .env
+
+    ```bash
+    TRELLO_API_KEY=""
+    TRELLO_API_SECRET=""
+    TRELLO_TOKEN=""
+    ```
+
 2. Run the project with the following command:
 
    ```bash
@@ -86,8 +94,12 @@ Now that you have set up the environment, you can start the project:
    ```
 
 3. You can run the tests using
-  ```bash
-  make test
-  ```
+    ```bash
+    make test
+    ```
 
 4. The server will be accessible at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+5. The last Env variable ```TRELLO_BOARD_ID``` can be setted using one of the values returned by the endpoint of get account boards. Go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). And Try out with this
+
+    ![Alt text](image.png)
