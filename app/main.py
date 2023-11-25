@@ -59,12 +59,12 @@ def create_task(payload: Task):
         )
 
     labels = get_board_labels(TRELLO_BOARD_ID)
-    random_label = payload.category
+    tag_label = payload.category
 
-    if random_label not in labels:
+    if tag_label not in labels:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"{random_label} Label don't exist in Trello Board",
+            detail=f"{tag_label} Label don't exist in Trello Board",
         )
 
     url = "https://api.trello.com/1/cards"
@@ -73,7 +73,7 @@ def create_task(payload: Task):
         "key": TRELLO_API_KEY,
         "token": TRELLO_TOKEN,
         "name": payload.title,
-        "idLabels": [labels[random_label]],
+        "idLabels": [labels[tag_label]],
     }
     response = requests.post(url=url, params=query)
     if response.status_code == status.HTTP_200_OK:
@@ -158,7 +158,8 @@ def handle_task_trello(payload: TrelloTask = Body(...)):
             description=f"Task Type {payload.task_type} of TrelloTask not handled",
         )
 
-@app.get('/boards')
+
+@app.get("/boards")
 def get_account_boards():
     url = "https://api.trello.com/1/members/me/boards"
     query = {
@@ -169,7 +170,7 @@ def get_account_boards():
     if response.status_code == status.HTTP_200_OK:
         boards = {}
         for item in response.json():
-          boards[item['name']] = item['id']
+            boards[item["name"]] = item["id"]
         return boards
     else:
         raise HTTPException(status_code=response.status_code, detail=response.text)
