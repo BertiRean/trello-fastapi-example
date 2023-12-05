@@ -20,8 +20,8 @@ Before you begin, make sure you have the following installed on your system:
 2. Clone this repository and navigate to the project folder:
 
    ```bash
-   git clone https://github.com/mariabohorquez/playground-backend
-   cd playground-backend
+   git clone https://github.com/BertiRean/trello-fastapi-example
+   cd trello-fastapi-example
    ```
    
 3. Create and activate a Python virtual environment:
